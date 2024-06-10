@@ -4,7 +4,7 @@
 
 ## Project Requirement
 
-The project should cover at least 85% of the topics covered during the 11-weeks of the course of ITE222.
+The project should cover at least **85%** of the topics covered during the 11-weeks of the course of ITE222.
 
 #### Topics covered includes:
 
@@ -15,13 +15,13 @@ The project should cover at least 85% of the topics covered during the 11-weeks 
 - [x] Instantiating Objects
 - [x] This keyword/ pointer , dot operator
 - [x] Packages (Scanner, Random, Math, Joption pane)
-- [ ] Encapsulation
-- [ ] Object Interface and interactions
+- [x] Encapsulation
+- [x] Object Interface and interactions
 - [x] Dimensional Arrays
 - [x] Static and variable methods
 - [x] Declaring methods and fileds in proper names
 - [x] Commenting
-- [ ] Access specifier/ Modifier.
+- [x] Access specifier/ Modifier.
 
 _Note:_ No other topics shouldn't be  (which is not included in the syllabus ) used in the project. If so project with be cancelled and marked as Zero.
 
