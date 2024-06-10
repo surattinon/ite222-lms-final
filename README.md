@@ -1,1 +1,3 @@
-# Stamford Library Management System | Written in Java
+# Stamford Library Management System
+
+## Written in Java
