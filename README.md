@@ -88,15 +88,15 @@ flowchart TD
     C --> D[Create Librarian]
     D --> E[Prompt for login]
     E --> F{Login successful?}
-    F -- No --> G[Print "Login failed!"]
-    F -- Yes --> H[Display Main Menu]
+    F --|No|--> G[Print "Login failed!"]
+    F --|Yes|--> H[Display Main Menu]
     H --> I{Choose an option}
-    I -- "1. View Books" --> J[Call viewBooks]
-    I -- "2. Borrow a Book" --> K[Prompt for Book ID to borrow]
+    I --|"1. View Books"|--> J[Call viewBooks]
+    I --|"2. Borrow a Book"|--> K[Prompt for Book ID to borrow]
     K --> L[Call borrowBook]
-    I -- "3. Return a Book" --> M[Prompt for Book ID to return]
+    I --|"3. Return a Book"|--> M[Prompt for Book ID to return]
     M --> N[Call returnBook]
-    I -- "4. Exit" --> O[Print "Exiting..."]
+    I --|"4. Exit"|--> O[Print "Exiting..."]
     J --> H
     L --> H
     N --> H
