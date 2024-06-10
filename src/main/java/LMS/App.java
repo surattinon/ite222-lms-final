@@ -9,6 +9,7 @@ public class App {
     BookDetail[][] booksArray = new BookDetail[3][5]; // 3 shelves, each with 5 slots
 
     // Populating the array with BookDetail objects
+    // | ID | Title | Author | Publisher |
 
     // 1st Shelve
     booksArray[0][0] = new BookDetail("b001", "Title1", "Author1", "Pub1");
@@ -31,13 +32,13 @@ public class App {
     booksArray[2][3] = new BookDetail("b014", "Title2", "Author2", "Pub2");
     booksArray[2][4] = new BookDetail("b015", "Title2", "Author2", "Pub2");
 
-    // BookDB instance with the 2D array
+    // Initialize a BookDatabase and pass the 2D array of books trough the constructor
     BookDatabase bookDB = new BookDatabase(booksArray);
 
-    // Creating a librarian
+    // Innitiate a Librarian object with ID and password
     Librarian librarian = new Librarian(12123, "password");
 
-    // Logging in the librarian
+    // Login prompt
     Scanner scanner = new Scanner(System.in);
     System.out.println("\nStamford Librarian Login");
     System.out.print("Enter librarian ID: ");
@@ -45,10 +46,13 @@ public class App {
     System.out.print("Enter password: ");
     String password = scanner.next();
 
+    // Check if ID and password match
     if (librarian.login(id, password)) {
       System.out.println("Login successful!\n");
       System.out.println("Welcome to Stamford Library");
       boolean exit = false;
+
+      // Loop for the main menu while exit is false
       while (!exit) {
         System.out.println("Total books borrowed: " + Librarian.getTotalBooksBorrowed());
         System.out.println("----------------------------");
@@ -60,24 +64,25 @@ public class App {
         System.out.print("Choose an option: ");
         int choice = scanner.nextInt();
 
+        // Switch case for choices
         switch (choice) {
           case 1:
-            librarian.viewBooks(bookDB);
+            librarian.viewBooks(bookDB); // View books
             break;
           case 2:
             System.out.print("Enter the ID of the book to borrow: ");
             scanner.nextLine(); // consume newline
             String borrowTitle = scanner.nextLine();
-            librarian.borrowBook(bookDB, borrowTitle);
+            librarian.borrowBook(bookDB, borrowTitle); // Borrow book
             break;
           case 3:
             System.out.print("Enter the ID of the book to return: ");
             scanner.nextLine(); // consume newline
             String returnTitle = scanner.nextLine();
-            librarian.returnBook(bookDB, returnTitle);
+            librarian.returnBook(bookDB, returnTitle); // Return book
             break;
           case 4:
-            exit = true;
+            exit = true; // Set exit to true to break the loop
             System.out.println("Exiting...");
             break;
           default:

@@ -15,26 +15,32 @@ public class BookDetail {
     this.isAvailable = true; // By default, the book is available
   }
 
+  // boolean method to check if the book is available
   public boolean borrowBook() {
+    // If the book is available, set it to false and return true
     if (isAvailable) {
       isAvailable = false;
       return true;
     }
-    return false;
+    return false; // If the book is not available, return false
   }
 
+  // Method to return the book by setting isAvailable to true
   public void returnBook() {
     isAvailable = true;
   }
 
+  // Getter method for bookID
   public String getBookID() {
     return bookID;
   }
 
+  // Getter method for bookTitle
   public String getBookTitle() {
     return bookTitle;
   }
 
+  // Getter method for print books details in table format
   public void getBookTable() {
     System.out.printf(
         "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
