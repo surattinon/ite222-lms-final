@@ -46,7 +46,7 @@ public class Librarian {
         BookDetail book = books[row][col]; // Set data at the current array position to book object
         if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
           // call the borrowBook method to check if the book is available for borrowing
-          if (book.borrowBook()) {
+          if (book.isNotBorrow()) {
             totalBooksBorrowed++; // Increment the total books borrowed
             System.out.printf(
                 "Book ID: %s | Title: %s \nStatus: has been borrowed.\n",

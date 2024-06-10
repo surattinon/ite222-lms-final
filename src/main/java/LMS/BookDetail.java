@@ -16,7 +16,7 @@ public class BookDetail {
   }
 
   // boolean method to check if the book is available
-  public boolean borrowBook() {
+  public boolean isNotBorrow() {
     // If the book is available, set it to false and return true
     if (isAvailable) {
       isAvailable = false;
