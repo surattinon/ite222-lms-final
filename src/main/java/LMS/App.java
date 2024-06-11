@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class App {
 
+  // Declare the APP_NAME as a static variable
+  public static String APP_NAME = "Stamford Library Management System";
+
   public static void main(String[] args) {
     // Use 2D array to represent shelves and slots of books
     BookDetail[][] booksArray = new BookDetail[3][5]; // 3 shelves, each with 5 slots
@@ -40,7 +43,7 @@ public class App {
 
     // Login prompt
     Scanner scanner = new Scanner(System.in);
-    System.out.println("\nStamford Librarian Login");
+    System.out.println("\nStamford Librarian Login | " + APP_NAME);
     System.out.print("Enter librarian ID: ");
     int id = scanner.nextInt();
     System.out.print("Enter password: ");
@@ -49,7 +52,7 @@ public class App {
     // Check if ID and password match
     if (librarian.login(id, password)) {
       System.out.println("Login successful!\n");
-      System.out.println("Welcome to Stamford Library");
+      System.out.println("Welcome to " + APP_NAME + "\n");
       boolean exit = false;
 
       // Loop for the main menu while exit is false
