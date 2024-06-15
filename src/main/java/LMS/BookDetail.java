@@ -7,12 +7,15 @@ public class BookDetail {
   private String bookPublication;
   private boolean isAvailable;
 
+  public BookDetail(boolean isAvailable) {
+    this.isAvailable = true;
+  }
+
   public BookDetail(String bookID, String title, String author, String publication) {
     this.bookTitle = title;
     this.bookAuthor = author;
     this.bookPublication = publication;
     this.bookID = bookID;
-    this.isAvailable = true; // By default, the book is available
   }
 
   // boolean method to check if the book is available

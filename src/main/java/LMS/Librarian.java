@@ -35,8 +35,12 @@ public class Librarian {
   }
 
   // Method to borrow a book by ID
-  public void borrowBook(BookDatabase bookDB, String bookID) {
+  public void borrowBook(BookDatabase bookDB, StudentDB studentDB, String bookID, String studentID,
+      String studentName, String burrowDate) {
+
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
+    StudentDetails[] students = studentDB.getStudentDB();
+
     for (BookDetail book : books) { // Loop through the columns (slots)
       if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
         // call the borrowBook method to check if the book is available for borrowing
@@ -45,13 +49,22 @@ public class Librarian {
           System.out.printf(
               "Book ID: %s | Title: %s \nStatus: has been borrowed.\n",
               bookID, book.getBookTitle());
-        } else {
-          System.out.println("The book is not available for borrowing.");
         }
+
+      } else {
+        System.out.println("The book is not available for borrowing.");
+      }
+      for (StudentDetails student : students) {
+        if (student.getStudentID().equals(studentID)) {
+          student.isReturn();
+          student.setBookID(bookID, burrowDate);
+        }
+
         return;
       }
     }
     System.out.println("Book not found."); // if condition is not met, print book not found
+
   }
 
   // Method to return a book by ID
@@ -82,7 +95,7 @@ public class Librarian {
         "-------------------------------------------------------------------------------------------");
     System.out.printf(
         "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
-        "Book ID", "Student ID", "Name", "Burrow Date", "Returned");
+        "Student ID", "Name", "Book ID", "Burrow Date", "Returned");
     System.out.println(
         "-------------------------------------------------------------------------------------------");
     for (StudentDetails student : students) { // Loop through the columns (slots)
@@ -90,7 +103,7 @@ public class Librarian {
     }
     System.out.println(
         "-------------------------------------------------------------------------------------------");
-  
+
   }
 
 }

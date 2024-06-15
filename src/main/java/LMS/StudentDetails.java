@@ -7,12 +7,15 @@ public class StudentDetails {
     private boolean isReturn;
     private String bookID;
 
+    String Returned = "N/A";
+
     public StudentDetails(String studentID, String studentName, String burrowDate, String bookID) {
+
         this.studentID = studentID;
         this.studentName = studentName;
         this.burrowDate = burrowDate;
         this.bookID = bookID;
-        isReturn = false;
+        this.isReturn = false;
     }
 
     public String getStudentID() {
@@ -27,7 +30,7 @@ public class StudentDetails {
         return burrowDate;
     }
 
-    public boolean getReturnDate() {
+    public boolean getReturn() {
         return isReturn;
     }
 
@@ -35,18 +38,24 @@ public class StudentDetails {
         return bookID;
     }
 
-    public String isReturn() {
+    public void isReturn() {
         if (isReturn) {
-            return "Yes";
+            Returned = "Yes";
         } else {
-            return "No";
+            Returned = "No";
         }
+    }
+
+    public void setBookID(String bookID, String borrowedDate) {
+        this.bookID = bookID;
+        this.burrowDate = borrowedDate;
+
     }
 
     public void showStudent() {
         System.out.printf(
                 "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
-                bookID, studentID, studentName, burrowDate, isReturn());
+                studentID, studentName, bookID, burrowDate, Returned);
     }
 }
 
