@@ -10,7 +10,8 @@ public class App {
   public static void main(String[] args) {
     // Use 2D array to represent shelves and slots of books
     BookDetail[] booksArray = new BookDetail[5]; // 3 shelves, each with 5 slots
-                                                      
+    StudentDetails[] studentsArray = new StudentDetails[5];
+
     // Populating the array with BookDetail objects
     // | ID | Title | Author | Publisher |
 
@@ -21,8 +22,11 @@ public class App {
     booksArray[3] = new BookDetail("b004", "Title2", "Author2", "Pub2");
     booksArray[4] = new BookDetail("b005", "Title2", "Author2", "Pub2");
 
+    StudentDB studentDB = new StudentDB(studentsArray);
 
-    // Initialize a BookDatabase and pass the 2D array of books trough the constructor
+
+    // Initialize a BookDatabase and pass the 2D array of books trough the
+    // constructor
     BookDatabase bookDB = new BookDatabase(booksArray);
 
     // Innitiate a Librarian object with ID and password
@@ -49,7 +53,8 @@ public class App {
         System.out.println("1. View Books");
         System.out.println("2. Borrow a Book");
         System.out.println("3. Return a Book");
-        System.out.println("4. Exit");
+        System.out.println("4. View Students History");
+        System.out.println("5. Exit");
         System.out.println("----------------------------");
         System.out.print("Choose an option: ");
         int choice = scanner.nextInt();
@@ -64,6 +69,20 @@ public class App {
             scanner.nextLine(); // consume newline
             String bookID = scanner.nextLine();
             librarian.borrowBook(bookDB, bookID); // Borrow book
+
+            System.out.println("\nEnter student detail");
+            System.out.print("Enter student ID: ");
+            String studentID = scanner.nextLine();
+            System.out.print("Enter student name: ");
+            String studentName = scanner.nextLine();
+            System.out.print("Enter burrow date: ");
+            String burrowDate = scanner.nextLine();
+
+            for (int i = Librarian.getTotalBooksBorrowed(); i < studentsArray.length; i++) {
+              studentsArray[i] = new StudentDetails(studentID, studentName, burrowDate, bookID);
+              break;
+            }
+            StudentDB studentDB = new StudentDB(studentsArray);
             break;
           case 3:
             System.out.print("Enter the ID of the book to return: ");
@@ -71,7 +90,13 @@ public class App {
             String returnTitle = scanner.nextLine();
             librarian.returnBook(bookDB, returnTitle); // Return book
             break;
+
           case 4:
+            System.out.println("Student History");
+            librarian.showStudent(studentDB);
+
+            break;
+          case 5:
             exit = true; // Set exit to true to break the loop
             System.out.println("Exiting...");
             break;
