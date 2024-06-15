@@ -19,9 +19,7 @@ public class Librarian {
 
   // Method to view all books in the library in a table format
   public void viewBooks(BookDatabase bookDB) {
-    BookDetail[][] books = bookDB.getBooks(); // Get the 2D array of books
-    for (int row = 0; row < books.length; row++) { // Loop through the rows (shelves)
-      System.out.println("\nShelf: " + (row + 1));
+    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
       System.out.println(
           "-------------------------------------------------------------------------------------------");
       System.out.printf(
@@ -29,21 +27,17 @@ public class Librarian {
           "ID", "Title", "Author", "Publication", "Available");
       System.out.println(
           "-------------------------------------------------------------------------------------------");
-      for (int col = 0; col < books[row].length; col++) { // Loop through the columns (slots)
-        BookDetail book = books[row][col]; // Set data at the current array position to book object
+      for (BookDetail book : books) { // Loop through the columns (slots)
         book.getBookTable(); // Call the getBookTable method to print book details
       }
       System.out.println(
           "-------------------------------------------------------------------------------------------");
-    }
   }
 
   // Method to borrow a book by ID
   public void borrowBook(BookDatabase bookDB, String bookID) {
-    BookDetail[][] books = bookDB.getBooks(); // Get the 2D array of books
-    for (int row = 0; row < books.length; row++) { // Loop through the rows (shelves)
-      for (int col = 0; col < books[row].length; col++) { // Loop through the columns (slots)
-        BookDetail book = books[row][col]; // Set data at the current array position to book object
+    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
+      for (BookDetail book : books) { // Loop through the columns (slots)
         if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
           // call the borrowBook method to check if the book is available for borrowing
           if (book.isNotBorrow()) {
@@ -56,17 +50,14 @@ public class Librarian {
           }
           return;
         }
-      }
     }
     System.out.println("Book not found."); // if condition is not met, print book not found
   }
 
   // Method to return a book by ID
   public void returnBook(BookDatabase bookDB, String bookID) {
-    BookDetail[][] books = bookDB.getBooks(); // Get the 2D array of books
-    for (int row = 0; row < books.length; row++) { // Loop through the rows (shelves)
-      for (int col = 0; col < books[row].length; col++) { // Loop through the columns (slots)
-        BookDetail book = books[row][col]; // Set data at the current array position to book object
+    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
+      for (BookDetail book : books) { // Loop through the columns (slots)
         if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
           totalBooksBorrowed--; // Decrement the total books borrowed
           book.returnBook(); // Call the returnBook method to set the book as available
@@ -75,7 +66,6 @@ public class Librarian {
               bookID, book.getBookTitle());
           return;
         }
-      }
     }
     System.out.println("Book not found."); // if condition is not met, print book not found
   }

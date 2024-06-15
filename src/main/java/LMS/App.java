@@ -4,36 +4,23 @@ import java.util.Scanner;
 
 public class App {
 
-  // Declare the APP_NAME as a static variable
-  public static String APP_NAME = "Stamford Library Management System";
+  // Declare the APP_NAME as a static fianl variable
+  public static final String APP_NAME = "Stamford Library Management System";
 
   public static void main(String[] args) {
     // Use 2D array to represent shelves and slots of books
-    BookDetail[][] booksArray = new BookDetail[3][5]; // 3 shelves, each with 5 slots
-
+    BookDetail[] booksArray = new BookDetail[5]; // 3 shelves, each with 5 slots
+                                                      
     // Populating the array with BookDetail objects
     // | ID | Title | Author | Publisher |
 
     // 1st Shelve
-    booksArray[0][0] = new BookDetail("b001", "Title1", "Author1", "Pub1");
-    booksArray[0][1] = new BookDetail("b002", "Title2", "Author2", "Pub2");
-    booksArray[0][2] = new BookDetail("b003", "Title2", "Author2", "Pub2");
-    booksArray[0][3] = new BookDetail("b004", "Title2", "Author2", "Pub2");
-    booksArray[0][4] = new BookDetail("b005", "Title2", "Author2", "Pub2");
+    booksArray[0] = new BookDetail("b001", "Title1", "Author1", "Pub1");
+    booksArray[1] = new BookDetail("b002", "Title2", "Author2", "Pub2");
+    booksArray[2] = new BookDetail("b003", "Title2", "Author2", "Pub2");
+    booksArray[3] = new BookDetail("b004", "Title2", "Author2", "Pub2");
+    booksArray[4] = new BookDetail("b005", "Title2", "Author2", "Pub2");
 
-    // 2nd Shelve
-    booksArray[1][0] = new BookDetail("b006", "Title1", "Author1", "Pub1");
-    booksArray[1][1] = new BookDetail("b007", "Title2", "Author2", "Pub2");
-    booksArray[1][2] = new BookDetail("b008", "Title2", "Author2", "Pub2");
-    booksArray[1][3] = new BookDetail("b009", "Title2", "Author2", "Pub2");
-    booksArray[1][4] = new BookDetail("b010", "Title2", "Author2", "Pub2");
-
-    // 3rd Shelve
-    booksArray[2][0] = new BookDetail("b011", "Title1", "Author1", "Pub1");
-    booksArray[2][1] = new BookDetail("b012", "Title2", "Author2", "Pub2");
-    booksArray[2][2] = new BookDetail("b013", "Title2", "Author2", "Pub2");
-    booksArray[2][3] = new BookDetail("b014", "Title2", "Author2", "Pub2");
-    booksArray[2][4] = new BookDetail("b015", "Title2", "Author2", "Pub2");
 
     // Initialize a BookDatabase and pass the 2D array of books trough the constructor
     BookDatabase bookDB = new BookDatabase(booksArray);
@@ -75,8 +62,8 @@ public class App {
           case 2:
             System.out.print("Enter the ID of the book to borrow: ");
             scanner.nextLine(); // consume newline
-            String borrowTitle = scanner.nextLine();
-            librarian.borrowBook(bookDB, borrowTitle); // Borrow book
+            String bookID = scanner.nextLine();
+            librarian.borrowBook(bookDB, bookID); // Borrow book
             break;
           case 3:
             System.out.print("Enter the ID of the book to return: ");
