@@ -6,16 +6,14 @@ public class BookDetail {
   private String bookAuthor;
   private String bookPublication;
   private boolean isAvailable;
-
-  public BookDetail(boolean isAvailable) {
-    this.isAvailable = true;
-  }
+  private String status = "Available";
 
   public BookDetail(String bookID, String title, String author, String publication) {
     this.bookTitle = title;
     this.bookAuthor = author;
     this.bookPublication = publication;
     this.bookID = bookID;
+    this.isAvailable = true;
   }
 
   // boolean method to check if the book is available
@@ -23,6 +21,7 @@ public class BookDetail {
     // If the book is available, set it to false and return true
     if (isAvailable) {
       isAvailable = false;
+      status = "Not Available";
       return true;
     }
     return false; // If the book is not available, return false
@@ -31,6 +30,7 @@ public class BookDetail {
   // Method to return the book by setting isAvailable to true
   public void returnBook() {
     isAvailable = true;
+    status = "Available";
   }
 
   // Getter method for bookID
@@ -46,7 +46,7 @@ public class BookDetail {
   // Getter method for print books details in table format
   public void getBookTable() {
     System.out.printf(
-        "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
-        bookID, bookTitle, bookAuthor, bookPublication, isAvailable);
+        "| %-10s| %-20s| %-20s| %-20s| %-20s|\n",
+        bookID, bookTitle, bookAuthor, bookPublication, status);
   }
 }

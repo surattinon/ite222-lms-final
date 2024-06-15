@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class App {
 
   // Declare the APP_NAME as a static fianl variable
-  public static final String APP_NAME = "Stamford Library Management System";
+  private static final String APP_NAME = "Stamford Library Management System";
 
   public static void main(String[] args) {
     // Use 2D array to represent shelves and slots of books
@@ -31,7 +31,7 @@ public class App {
     Librarian librarian = new Librarian(12123, "password");
 
     studentsArray[0] = new StudentDetails("2104270033", "Pumin", "N/A", "N/A");
-    studentsArray[1] = new StudentDetails("s002", "Bas", "N/A", "N/A");
+    studentsArray[1] = new StudentDetails("2105250007", "Bas", "N/A", "N/A");
     studentsArray[2] = new StudentDetails("s003", "Panthorn", "N/A", "N/A");
     studentsArray[3] = new StudentDetails("s004", "Bananascence", "N/A", "N/A");
     studentsArray[4] = new StudentDetails("s005", "Student5", "N/A", "N/A");
@@ -47,12 +47,12 @@ public class App {
     // Check if ID and password match
     if (librarian.login(id, password)) {
       System.out.println("Login successful!\n");
-      System.out.println("Welcome to " + APP_NAME + "\n");
+      System.out.println("Welcome to " + APP_NAME);
       boolean exit = false;
 
       // Loop for the main menu while exit is false
       while (!exit) {
-        System.out.println("Total books borrowed: " + Librarian.getTotalBooksBorrowed());
+        System.out.println("\nTotal books borrowed: " + Librarian.getTotalBooksBorrowed());
         System.out.println("----------------------------");
         System.out.println("1. View Books");
         System.out.println("2. Borrow a Book");
@@ -72,16 +72,12 @@ public class App {
             System.out.print("Enter the ID of the book to borrow: ");
             scanner.nextLine(); // consume newline
             String bookID = scanner.nextLine();
-
-            System.out.println("\nEnter student detail");
             System.out.print("Enter student ID: ");
             String studentID = scanner.nextLine();
-            System.out.print("Enter student name: ");
-            String studentName = scanner.nextLine();
             System.out.print("Enter burrow date: ");
             String burrowDate = scanner.nextLine();
 
-            librarian.borrowBook(bookDB, studentDB, bookID, studentID, studentName, burrowDate);
+            librarian.borrowBook(bookDB, studentDB, bookID, studentID, burrowDate);
 
             break;
 

@@ -21,22 +21,41 @@ public class Librarian {
   public void viewBooks(BookDatabase bookDB) {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     System.out.println(
-        "-------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------");
     System.out.printf(
-        "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
-        "ID", "Title", "Author", "Publication", "Available");
+        "| %-10s| %-20s| %-20s| %-20s| %-20s|\n", "ID", "Title", "Author", "Publication", "Status");
     System.out.println(
-        "-------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------");
     for (BookDetail book : books) { // Loop through the columns (slots)
       book.getBookTable(); // Call the getBookTable method to print book details
     }
     System.out.println(
-        "-------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------");
+  }
+
+  public void showStudent(StudentDB studentDB) {
+    StudentDetails[] students = studentDB.getStudentDB();
+    System.out.println(
+        "-----------------------------------------------------------------------------------------------------");
+    System.out.printf(
+        "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
+        "Student ID", "Name", "Book ID", "Burrow Date", "Returned");
+    System.out.println(
+        "-----------------------------------------------------------------------------------------------------");
+    for (StudentDetails student : students) { // Loop through the columns (slots)
+      student.showStudent();
+    }
+    System.out.println(
+        "-----------------------------------------------------------------------------------------------------");
   }
 
   // Method to borrow a book by ID
-  public void borrowBook(BookDatabase bookDB, StudentDB studentDB, String bookID, String studentID,
-      String studentName, String burrowDate) {
+  public void borrowBook(
+      BookDatabase bookDB,
+      StudentDB studentDB,
+      String bookID,
+      String studentID,
+      String burrowDate) {
 
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
@@ -47,24 +66,23 @@ public class Librarian {
         if (book.isNotBorrow()) {
           totalBooksBorrowed++; // Increment the total books borrowed
           System.out.printf(
-              "Book ID: %s | Title: %s \nStatus: has been borrowed.\n",
-              bookID, book.getBookTitle());
+              "\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
+          break;
+        } else {
+          System.out.println("The book is not available for borrowing.");
+          return;
         }
-
-      } else {
-        System.out.println("The book is not available for borrowing.");
       }
-      for (StudentDetails student : students) {
-        if (student.getStudentID().equals(studentID)) {
-          student.isReturn();
-          student.setBookID(bookID, burrowDate);
-        }
-
+    }
+    for (StudentDetails student : students) {
+      if (student.getStudentID().equals(studentID)) {
+        student.isReturn();
+        student.setBookID(bookID, burrowDate);
+        System.out.printf("Borrowed by %s\n", student.getStudentName());
         return;
       }
     }
-    System.out.println("Book not found."); // if condition is not met, print book not found
-
+    System.out.println("Student not found.");
   }
 
   // Method to return a book by ID
@@ -75,8 +93,7 @@ public class Librarian {
         totalBooksBorrowed--; // Decrement the total books borrowed
         book.returnBook(); // Call the returnBook method to set the book as available
         System.out.printf(
-            "Book ID: %s | Title: %s \nStatus: has been returned.\n",
-            bookID, book.getBookTitle());
+            "Book ID: %s | Title: %s \nStatus: has been returned.\n", bookID, book.getBookTitle());
         return;
       }
     }
@@ -87,23 +104,4 @@ public class Librarian {
   public static int getTotalBooksBorrowed() {
     return totalBooksBorrowed;
   }
-
-  public void showStudent(StudentDB studentDB) {
-
-    StudentDetails[] students = studentDB.getStudentDB();
-    System.out.println(
-        "-------------------------------------------------------------------------------------------");
-    System.out.printf(
-        "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
-        "Student ID", "Name", "Book ID", "Burrow Date", "Returned");
-    System.out.println(
-        "-------------------------------------------------------------------------------------------");
-    for (StudentDetails student : students) { // Loop through the columns (slots)
-      student.showStudent();
-    }
-    System.out.println(
-        "-------------------------------------------------------------------------------------------");
-
-  }
-
 }

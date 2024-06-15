@@ -40,8 +40,10 @@ public class StudentDetails {
 
     public void isReturn() {
         if (isReturn) {
+            isReturn = false;
             Returned = "Yes";
         } else {
+            isReturn = true;
             Returned = "No";
         }
     }
@@ -54,7 +56,7 @@ public class StudentDetails {
 
     public void showStudent() {
         System.out.printf(
-                "| %-10s| %-20s| %-20s| %-20s| %-10s|\n",
+                "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
                 studentID, studentName, bookID, burrowDate, Returned);
     }
 }
