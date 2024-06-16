@@ -20,7 +20,7 @@ public class App {
     booksArray[0] = new BookDetail("b001", "The Great Gatsby", "Surekha Lanka", "1925");
     booksArray[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
     booksArray[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
-    booksArray[3] = new BookDetail("b004", "In Search of Lost Time", "Marcel Proust", "2000");
+    booksArray[3] = new BookDetail("b004", "Lolita", "Vladimir Nabokov", "1995");
     booksArray[4] = new BookDetail("b005", "Frieren", "Kanehito Yamada", "2020");
 
     // Initialize a BookDatabase and pass the 2D array of books trough the
