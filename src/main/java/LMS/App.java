@@ -30,11 +30,11 @@ public class App {
     // Innitiate a Librarian object with ID and password
     Librarian librarian = new Librarian(12123, "password");
 
-    studentsArray[0] = new StudentDetails("2104270033", "Pumin", "N/A", "N/A");
-    studentsArray[1] = new StudentDetails("2105250007", "Bas", "N/A", "N/A");
-    studentsArray[2] = new StudentDetails("s003", "Panthorn", "N/A", "N/A");
-    studentsArray[3] = new StudentDetails("s004", "Bananascence", "N/A", "N/A");
-    studentsArray[4] = new StudentDetails("s005", "Student5", "N/A", "N/A");
+    studentsArray[0] = new StudentDetails("2104270033", "Pumin", "", "");
+    studentsArray[1] = new StudentDetails("2105250007", "Bas", "", "");
+    studentsArray[2] = new StudentDetails("s003", "Panthorn", "", "");
+    studentsArray[3] = new StudentDetails("s004", "Bananascence", "", "");
+    studentsArray[4] = new StudentDetails("s005", "Student5", "", "");
 
     // Login prompt
     Scanner scanner = new Scanner(System.in);
@@ -85,7 +85,7 @@ public class App {
             System.out.print("Enter the ID of the book to return: ");
             scanner.nextLine(); // consume newline
             String returnID = scanner.nextLine();
-            librarian.returnBook(bookDB, returnID,studentDB); // Return book
+            librarian.returnBook(bookDB, returnID, studentDB); // Return book
             break;
 
           case 4:
