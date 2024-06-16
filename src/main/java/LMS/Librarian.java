@@ -56,7 +56,7 @@ public class Librarian {
       StudentDB studentDB,
       String bookID,
       String studentID,
-      String burrowDate) {
+      String borrowDate) {
 
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
@@ -84,7 +84,7 @@ public class Librarian {
     for (StudentDetails student : students) {
       if (student.getStudentID().equals(studentID)) {
         student.isReturn();
-        student.setBookID(bookID, burrowDate);
+        student.setBookID(bookID, borrowDate);
         System.out.printf("Borrowed by %s\n", student.getStudentName());
         return;
       }

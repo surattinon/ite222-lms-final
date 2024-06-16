@@ -16,11 +16,12 @@ public class App {
     // | ID | Title | Author | Publisher |
 
     // 1st Shelve
-    booksArray[0] = new BookDetail("b001", "Title1", "Author1", "Pub1");
-    booksArray[1] = new BookDetail("b002", "Title2", "Author2", "Pub2");
-    booksArray[2] = new BookDetail("b003", "Title2", "Author2", "Pub2");
-    booksArray[3] = new BookDetail("b004", "Title2", "Author2", "Pub2");
-    booksArray[4] = new BookDetail("b005", "Title2", "Author2", "Pub2");
+    // F. Scott Fitzgerald
+    booksArray[0] = new BookDetail("b001", "The Great Gatsby", "Surekha Lanka", "1925");
+    booksArray[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
+    booksArray[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
+    booksArray[3] = new BookDetail("b004", "In Search of Lost Time", "Marcel Proust", "2000");
+    booksArray[4] = new BookDetail("b005", "Frieren", "Kanehito Yamada", "2020");
 
     // Initialize a BookDatabase and pass the 2D array of books trough the
     // constructor
@@ -32,9 +33,9 @@ public class App {
 
     studentsArray[0] = new StudentDetails("2104270033", "Pumin", "", "");
     studentsArray[1] = new StudentDetails("2105250007", "Bas", "", "");
-    studentsArray[2] = new StudentDetails("s003", "Panthorn", "", "");
-    studentsArray[3] = new StudentDetails("s004", "Bananascence", "", "");
-    studentsArray[4] = new StudentDetails("s005", "Student5", "", "");
+    studentsArray[2] = new StudentDetails("2207150010", "Pantorn", "", "");
+    studentsArray[3] = new StudentDetails("s001", "Bananascence", "", "");
+    studentsArray[4] = new StudentDetails("s002", "Gayman", "", "");
 
     // Login prompt
     Scanner scanner = new Scanner(System.in);
@@ -74,7 +75,7 @@ public class App {
             String borrowID = scanner.nextLine();
             System.out.print("Enter student ID: ");
             String studentID = scanner.nextLine();
-            System.out.print("Enter burrow date: ");
+            System.out.print("Enter borrow date: ");
             String burrowDate = scanner.nextLine();
 
             librarian.borrowBook(bookDB, studentDB, borrowID, studentID, burrowDate);
