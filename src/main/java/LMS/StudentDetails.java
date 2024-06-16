@@ -7,7 +7,7 @@ public class StudentDetails {
     private boolean isReturn;
     private String bookID;
 
-    String Returned = "N/A";
+    String Returned = "";
 
     public StudentDetails(String studentID, String studentName, String burrowDate, String bookID) {
 
