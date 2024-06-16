@@ -85,7 +85,7 @@ public class App {
             System.out.print("Enter the ID of the book to return: ");
             scanner.nextLine(); // consume newline
             String returnTitle = scanner.nextLine();
-            librarian.returnBook(bookDB, returnTitle); // Return book
+            librarian.returnBook(bookDB, returnTitle,studentDB); // Return book
             break;
 
           case 4:
