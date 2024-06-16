@@ -71,21 +71,21 @@ public class App {
           case 2:
             System.out.print("Enter the ID of the book to borrow: ");
             scanner.nextLine(); // consume newline
-            String bookID = scanner.nextLine();
+            String borrowID = scanner.nextLine();
             System.out.print("Enter student ID: ");
             String studentID = scanner.nextLine();
             System.out.print("Enter burrow date: ");
             String burrowDate = scanner.nextLine();
 
-            librarian.borrowBook(bookDB, studentDB, bookID, studentID, burrowDate);
+            librarian.borrowBook(bookDB, studentDB, borrowID, studentID, burrowDate);
 
             break;
 
           case 3:
             System.out.print("Enter the ID of the book to return: ");
             scanner.nextLine(); // consume newline
-            String returnTitle = scanner.nextLine();
-            librarian.returnBook(bookDB, returnTitle,studentDB); // Return book
+            String returnID = scanner.nextLine();
+            librarian.returnBook(bookDB, returnID,studentDB); // Return book
             break;
 
           case 4:

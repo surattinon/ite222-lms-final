@@ -5,6 +5,7 @@ public class Librarian {
   private int id;
   private String password;
   private static int totalBooksBorrowed = 0; // Static variable to track total books borrowed
+  private boolean isError;
 
   // Constructor to initialize Librarian with ID and password
   public Librarian(int id, String password) {
@@ -59,6 +60,7 @@ public class Librarian {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
 
+    
     for (BookDetail book : books) { // Loop through the columns (slots)
       if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
         // call the borrowBook method to check if the book is available for borrowing
@@ -66,12 +68,19 @@ public class Librarian {
           totalBooksBorrowed++; // Increment the total books borrowed
           System.out.printf(
               "\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
+              isError = false;
           break;
         } else {
           System.out.println("The book is not available for borrowing.");
           return;
         }
+      }else{
+        isError = true;
       }
+    }
+    if(isError){
+      System.out.println("Book not found.");
+      return;
     }
     for (StudentDetails student : students) {
       if (student.getStudentID().equals(studentID)) {
@@ -91,7 +100,15 @@ public class Librarian {
       for (StudentDetails student : students) {
       if (student.getBookID().equals(bookID)) { // Check if the book ID matches the input
         student.isReturn();
+        isError = false;
+        break;
+      }else {
+        isError = true;
       }
+      }
+      if(isError){
+        System.out.println("book id is not correct.");
+        return;
       }
     for (BookDetail book : books) { // Loop through the columns (slots)
       if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
