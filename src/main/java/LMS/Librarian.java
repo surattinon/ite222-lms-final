@@ -25,7 +25,8 @@ public class Librarian {
         "-----------------------------------------------------------------------------------------------------");
     System.out.printf(
         "| %-10s| %-20s| %-20s| %-20s| %-20s|\n", "ID", "Title", "Author", "Publication", "Status");
-    System.out.println( "-----------------------------------------------------------------------------------------------------");
+    System.out.println(
+        "-----------------------------------------------------------------------------------------------------");
     for (BookDetail book : books) { // Loop through the columns (slots)
       book.getBookTable(); // Call the getBookTable method to print book details
     }
@@ -60,25 +61,23 @@ public class Librarian {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
 
-    
     for (BookDetail book : books) { // Loop through the columns (slots)
       if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
         // call the borrowBook method to check if the book is available for borrowing
         if (book.isNotBorrow()) {
           totalBooksBorrowed++; // Increment the total books borrowed
-          System.out.printf(
-              "\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
-              isError = false;
+          System.out.printf("\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
+          isError = false;
           break;
         } else {
           System.out.println("The book is not available for borrowing.");
           return;
         }
-      }else{
+      } else {
         isError = true;
       }
     }
-    if(isError){
+    if (isError) {
       System.out.println("Book not found.");
       return;
     }
@@ -96,23 +95,23 @@ public class Librarian {
   // Method to return a book by ID
   public void returnBook(BookDatabase bookDB, String bookID, StudentDB studentDB) {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
-      StudentDetails[] students = studentDB.getStudentDB();
-      for (StudentDetails student : students) {
+    StudentDetails[] students = studentDB.getStudentDB();
+    for (StudentDetails student : students) {
       if (student.getBookID().equals(bookID)) { // Check if the book ID matches the input
         student.isReturn();
         isError = false;
         break;
-      }else {
+      } else {
         isError = true;
       }
-      }
-      if(isError){
-        System.out.println("book id is not correct.");
-        return;
-      }
+    }
+    if (isError) {
+      System.out.println("book id is not correct.");
+      return;
+    }
     for (BookDetail book : books) { // Loop through the columns (slots)
       if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
-      // if (bookID.equals(student.getBookID()) ) { // Check if the book ID matches the input
+        // if (bookID.equals(student.getBookID()) ) { // Check if the book ID matches the input
         totalBooksBorrowed--; // Decrement the total books borrowed
         book.returnBook(); // Call the returnBook method to set the book as available
         System.out.printf(
