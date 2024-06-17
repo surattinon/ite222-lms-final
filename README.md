@@ -27,6 +27,33 @@ _Note:_ No other topics shouldn't be  (which is not included in the syllabus ) 
 
 ## Class Diagram
 
+````mermaid
+```mermaid
+    graph TD
+    A[Start] --> B{Declare App Name & Arrays}
+    B --> C{Populate Book Details Array}
+    B --> D{Populate Student Details Array}
+    C --> E{Create Book Database Object}
+    D --> F{Create Student Database Object}
+    E,F --> G{Create Librarian Object}
+    G --> H{Login Prompt}
+    H --> I{Get Librarian ID & Password}
+    I --> J{Login Verification}
+    J -- Yes --> K{Welcome Message & Main Menu}
+    J -- No --> L{Login Failed}
+    K --> M{Display Total Books Borrowed}
+    K --> N{Menu Options}
+    N --> O{Choice Selection}
+    O -- 1 --> P{Get Book ID, Student ID, Borrow Date} --> Q{Borrow Book} --> K
+    O -- 2 --> R{Get Book ID to Return} --> S{Return Book} --> K
+    O -- 3 --> T{View Books} --> K
+    O -- 4 --> U{View Student Borrow History} --> K
+    O -- 5 --> V{Exit Program} --> W[End]
+    O -- Other --> X{Invalid Option} --> N
+````
+
+````
+
 ```mermaid
 ---
 title: Stamford Library Management System
@@ -74,4 +101,4 @@ classDiagram
     BookDatabase --> BookDetail
     Librarian --> BookDatabase
     Librarian --> BookDetail
-```
+````
