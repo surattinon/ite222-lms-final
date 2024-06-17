@@ -2,7 +2,7 @@ package LMS;
 
 public class StudentDatabase {
 
-  // Field
+  // Fields
   // Declare students as a private field with datatype StudentDetails array
   private StudentDetail[] students;
 
@@ -23,9 +23,9 @@ class StudentDetail {
   private String studentID;
   private String studentName;
   private String borrowDate;
-  private boolean isReturn;
   private String bookID;
-  private String returnStatus = ""; // Set returnStatus to empty string by default
+  private String returnStatus;
+  private boolean isReturn;
 
   // Constructor for StudentDetails class
   public StudentDetail(String studentID, String studentName, String borrowDate, String bookID) {
@@ -33,6 +33,7 @@ class StudentDetail {
     this.studentName = studentName;
     this.borrowDate = borrowDate;
     this.bookID = bookID;
+    this.returnStatus = ""; // Set returnStatus to an empty string by default
   }
 
   // Setter method for bookBorrowID

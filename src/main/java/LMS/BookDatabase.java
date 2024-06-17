@@ -1,6 +1,7 @@
 package LMS;
 
 public class BookDatabase {
+  // Fields
   // Declare books as a private field with datatype BookDetail array
   private BookDetail[] books;
 
@@ -22,8 +23,8 @@ class BookDetail {
   private String bookTitle;
   private String bookAuthor;
   private String bookPublication;
+  private String status;
   private boolean isAvailable;
-  private String status = "Available"; // Set status to "Available" by default
 
   public BookDetail(String bookID, String title, String author, String publication) {
     this.bookTitle = title;
@@ -31,6 +32,7 @@ class BookDetail {
     this.bookPublication = publication;
     this.bookID = bookID;
     this.isAvailable = true;
+    this.status = "Available"; // Set status to "Available" by default
   }
 
   // Boolean method to check if the book is available

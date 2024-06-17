@@ -9,14 +9,12 @@ public class App {
   private static final String APP_NAME = "Stamford Library Management System";
 
   public static void main(String[] args) {
-    // Initailize BookDetial with datatype object array to represent book details
+    // Declare arrays for bookDetails and studentDetails 
     BookDetail[] booksDetails = new BookDetail[5];
-    // Use array to represent student details
     StudentDetail[] studentDetails = new StudentDetail[5];
 
     // Populating the array with bookDetails objects and pass book details trough constructor
     // Format: | ID | Title | Author | Publication |
-
     booksDetails[0] = new BookDetail("b001", "The Great Gatsby", "F. Scott Fitzgerald", "1925");
     booksDetails[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
     booksDetails[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
@@ -24,14 +22,14 @@ public class App {
     booksDetails[4] = new BookDetail("b005", "Frieren", "Kanehito Yamada", "2020");
 
     // Populating the array with bookDetails objects and pass book details trough constructor
-    // Format: | Student ID | Name | (set empty string to last two arguments)
+    // Format: | Student ID | Name | (empty string for last two arguments)
     studentDetails[0] = new StudentDetail("2104270033", "Pumin", "", "");
     studentDetails[1] = new StudentDetail("2105250007", "Bas", "", "");
     studentDetails[2] = new StudentDetail("2207150010", "Pantorn", "", "");
     studentDetails[3] = new StudentDetail("2123456789", "Bananascence", "", "");
     studentDetails[4] = new StudentDetail("2129876543", "Suphakid", "", "");
 
-    // Initialize a bookDB and studentDP and pass all arrays trough constructor
+    // Initialize a bookDB and studentDB and pass all arrays trough constructor
     BookDatabase bookDB = new BookDatabase(booksDetails);
     StudentDatabase studentDB = new StudentDatabase(studentDetails);
 
