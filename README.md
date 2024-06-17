@@ -27,7 +27,6 @@ _Note:_ No other topics shouldn't be  (which is not included in the syllabus ) 
 
 ## Class Diagram
 
-````mermaid
 ```mermaid
     graph TD
     A[Start] --> B{Declare App Name & Arrays}
@@ -50,9 +49,8 @@ _Note:_ No other topics shouldn't be  (which is not included in the syllabus ) 
     O -- 4 --> U{View Student Borrow History} --> K
     O -- 5 --> V{Exit Program} --> W[End]
     O -- Other --> X{Invalid Option} --> N
-````
 
-````
+```
 
 ```mermaid
 ---
@@ -101,4 +99,4 @@ classDiagram
     BookDatabase --> BookDetail
     Librarian --> BookDatabase
     Librarian --> BookDetail
-````
+```
