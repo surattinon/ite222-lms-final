@@ -8,34 +8,34 @@ public class App {
   private static final String APP_NAME = "Stamford Library Management System";
 
   public static void main(String[] args) {
-    // Use 2D array to represent shelves and slots of books
-    BookDetail[] booksArray = new BookDetail[5]; // 3 shelves, each with 5 slots
-    StudentDetails[] studentsArray = new StudentDetails[5];
+    // Initailize BookDetial with datatype object array to represent book details
+    BookDetail[] booksDetails = new BookDetail[5]; // 3 shelves, each with 5 slots
+    // Use array to represent student details
+    StudentDetails[] studentDetails = new StudentDetails[5];
 
-    // Populating the array with BookDetail objects
-    // | ID | Title | Author | Publisher |
+    // Populating the array with bookDetails objects
+    // | ID | Title | Author | Publication |
 
     // 1st Shelve
     // F. Scott Fitzgerald
-    booksArray[0] = new BookDetail("b001", "The Great Gatsby", "F. Scott Fitzgerald", "1925");
-    booksArray[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
-    booksArray[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
-    booksArray[3] = new BookDetail("b004", "Lolita", "Vladimir Nabokov", "1995");
-    booksArray[4] = new BookDetail("b005", "Frieren", "Kanehito Yamada", "2020");
+    booksDetails[0] = new BookDetail("b001", "The Great Gatsby", "F. Scott Fitzgerald", "1925");
+    booksDetails[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
+    booksDetails[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
+    booksDetails[3] = new BookDetail("b004", "Lolita", "Vladimir Nabokov", "1995");
+    booksDetails[4] = new BookDetail("b005", "Frieren", "Kanehito Yamada", "2020");
 
-    // Initialize a BookDatabase and pass the 2D array of books trough the
-    // constructor
-    BookDatabase bookDB = new BookDatabase(booksArray);
-    StudentDB studentDB = new StudentDB(studentsArray);
+    // Initialize a BookDatabase and StudentDatabase and pass the array of books trough the
+    BookDatabase bookDB = new BookDatabase(booksDetails);
+    StudentDatabase studentDB = new StudentDatabase(studentDetails);
 
     // Innitiate a Librarian object with ID and password
     Librarian librarian = new Librarian(12123, "password");
 
-    studentsArray[0] = new StudentDetails("2104270033", "Pumin", "", "");
-    studentsArray[1] = new StudentDetails("2105250007", "Bas", "", "");
-    studentsArray[2] = new StudentDetails("2207150010", "Pantorn", "", "");
-    studentsArray[3] = new StudentDetails("s001", "Bananascence", "", "");
-    studentsArray[4] = new StudentDetails("s002", "Gayman", "", "");
+    studentDetails[0] = new StudentDetails("2104270033", "Pumin", "", "");
+    studentDetails[1] = new StudentDetails("2105250007", "Bas", "", "");
+    studentDetails[2] = new StudentDetails("2207150010", "Pantorn", "", "");
+    studentDetails[3] = new StudentDetails("s001", "Bananascence", "", "");
+    studentDetails[4] = new StudentDetails("s002", "Gayman", "", "");
 
     // Login prompt
     Scanner scanner = new Scanner(System.in);

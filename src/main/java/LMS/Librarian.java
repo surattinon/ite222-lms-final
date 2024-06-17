@@ -34,7 +34,7 @@ public class Librarian {
         "-----------------------------------------------------------------------------------------------------");
   }
 
-  public void showStudent(StudentDB studentDB) {
+  public void showStudent(StudentDatabase studentDB) {
     StudentDetails[] students = studentDB.getStudentDB();
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
@@ -53,7 +53,7 @@ public class Librarian {
   // Method to borrow a book by ID
   public void borrowBook(
       BookDatabase bookDB,
-      StudentDB studentDB,
+      StudentDatabase studentDB,
       String bookID,
       String studentID,
       String borrowDate) {
@@ -62,36 +62,36 @@ public class Librarian {
     StudentDetails[] students = studentDB.getStudentDB();
 
     for (BookDetail book : books) { // Loop through the columns (slots)
-    for (StudentDetails student : students) {
-      if (book.getBookID().equals(bookID) && student.getStudentID().equals(studentID)) { // Check if the book ID matches the input
-        // call the borrowBook method to check if the book is available for borrowing
-        if (book.isNotBorrow()) {
-          totalBooksBorrowed++; // Increment the total books borrowed
-          System.out.printf("\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
-          isError = false;
-        student.isReturn();
-        student.setBookID(bookID, borrowDate);
-        System.out.printf("Borrowed by %s\n", student.getStudentName());
-        return;
-          // break;
+      for (StudentDetails student : students) {
+        if (book.getBookID().equals(bookID)
+            && student.getStudentID().equals(studentID)) { // Check if the book ID matches the input
+          // call the borrowBook method to check if the book is available for borrowing
+          if (book.isNotBorrow()) {
+            totalBooksBorrowed++; // Increment the total books borrowed
+            System.out.printf("\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
+            student.isReturn();
+            student.setBookID(bookID, borrowDate);
+            System.out.printf("Borrowed by %s\n", student.getStudentName());
+            isError = false;
+            return;
+            // break;
+          } else {
+            System.out.println("The book is not available for borrowing.");
+            return;
+          }
         } else {
-          System.out.println("The book is not available for borrowing.");
-          return;
+          isError = true;
         }
-      } else {
-        isError = true;
       }
     }
-    System.out.println("Student not found.");
-    }
     if (isError) {
-      System.out.println("Book not found.");
+      System.out.println("Invalid BookID or Student ID");
       return;
     }
   }
 
   // Method to return a book by ID
-  public void returnBook(BookDatabase bookDB, String bookID, StudentDB studentDB) {
+  public void returnBook(BookDatabase bookDB, String bookID, StudentDatabase studentDB) {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
     for (StudentDetails student : students) {
@@ -103,16 +103,17 @@ public class Librarian {
         isError = true;
       }
 
-    for (BookDetail book : books) { // Loop through the columns (slots)
-      if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
-        // if (bookID.equals(student.getBookID()) ) { // Check if the book ID matches the input
-        totalBooksBorrowed--; // Decrement the total books borrowed
-        book.returnBook(); // Call the returnBook method to set the book as available
-        System.out.printf(
-            "Book ID: %s | Title: %s \nStatus: has been returned.\n", bookID, book.getBookTitle());
-        return;
+      for (BookDetail book : books) { // Loop through the columns (slots)
+        if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
+          // if (bookID.equals(student.getBookID()) ) { // Check if the book ID matches the input
+          totalBooksBorrowed--; // Decrement the total books borrowed
+          book.returnBook(); // Call the returnBook method to set the book as available
+          System.out.printf(
+              "Book ID: %s | Title: %s \nStatus: has been returned.\n",
+              bookID, book.getBookTitle());
+          return;
+        }
       }
-    }
     }
     if (isError) {
       System.out.println("book id is not correct.");

@@ -1,6 +1,23 @@
 package LMS;
 
-public class StudentDetails {
+public class StudentDatabase {
+    private StudentDetails[] students;
+
+    public StudentDatabase(StudentDetails[] students) {
+        this.students = students;
+    }
+
+    public void setStudentDB(StudentDetails[] students) {
+        this.students = students;
+    }
+
+    public StudentDetails[] getStudentDB() {
+        return students;
+    }
+
+}
+
+class StudentDetails {
     private String studentID;
     private String studentName;
     private String borrowDate;
@@ -30,10 +47,6 @@ public class StudentDetails {
         return borrowDate;
     }
 
-    public boolean getReturn() {
-        return isReturn;
-    }
-
     public String getBookID() {
         return bookID;
     }
@@ -59,21 +72,4 @@ public class StudentDetails {
                 "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
                 studentID, studentName, bookID, borrowDate, Returned);
     }
-}
-
-class StudentDB {
-    private StudentDetails[] students;
-
-    public StudentDB(StudentDetails[] students) {
-        this.students = students;
-    }
-
-    public void setStudentDB(StudentDetails[] students) {
-        this.students = students;
-    }
-
-    public StudentDetails[] getStudentDB() {
-        return students;
-    }
-
 }
