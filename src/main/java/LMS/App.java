@@ -17,7 +17,7 @@ public class App {
 
     // 1st Shelve
     // F. Scott Fitzgerald
-    booksArray[0] = new BookDetail("b001", "The Great Gatsby", "Surekha Lanka", "1925");
+    booksArray[0] = new BookDetail("b001", "The Great Gatsby", "F. Scott Fitzgerald", "1925");
     booksArray[1] = new BookDetail("b002", "Anna Karenina", "Anna Karenina", "1878");
     booksArray[2] = new BookDetail("b003", "War and Peace", "Leo Tolstoy", "1865");
     booksArray[3] = new BookDetail("b004", "Lolita", "Vladimir Nabokov", "1995");
