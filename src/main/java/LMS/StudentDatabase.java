@@ -1,73 +1,76 @@
 package LMS;
 
 public class StudentDatabase {
-  private StudentDetails[] students;
 
-  public StudentDatabase(StudentDetails[] students) {
+  // Field
+  // Declare students as a private field with datatype StudentDetails array
+  private StudentDetail[] students;
+
+  // Constructor for StudentDatabase class
+  public StudentDatabase(StudentDetail[] students) {
     this.students = students;
   }
 
-  public void setStudentDB(StudentDetails[] students) {
-    this.students = students;
-  }
-
-  public StudentDetails[] getStudentDB() {
+  // Getter method for students field
+  public StudentDetail[] getStudentDB() {
     return students;
   }
 }
 
-class StudentDetails {
+// Subclass StudentDetails
+class StudentDetail {
+  // Fields
   private String studentID;
   private String studentName;
   private String borrowDate;
   private boolean isReturn;
   private String bookID;
+  private String returnStatus = ""; // Set returnStatus to empty string by default
 
-  String Returned = "";
-
-  public StudentDetails(String studentID, String studentName, String borrowDate, String bookID) {
-
+  // Constructor for StudentDetails class
+  public StudentDetail(String studentID, String studentName, String borrowDate, String bookID) {
     this.studentID = studentID;
     this.studentName = studentName;
     this.borrowDate = borrowDate;
     this.bookID = bookID;
-    this.isReturn = false;
   }
 
-  public String getStudentID() {
-    return studentID;
-  }
-
-  public String getStudentName() {
-    return studentName;
-  }
-
-  public String getBurrowDate() {
-    return borrowDate;
-  }
-
-  public String getBookID() {
-    return bookID;
-  }
-
-  public void isReturn() {
-    if (isReturn) {
-      isReturn = false;
-      Returned = "Yes";
-    } else {
-      isReturn = true;
-      Returned = "No";
-    }
-  }
-
-  public void setBookID(String bookID, String borrowedDate) {
+  // Setter method for bookBorrowID
+  public void setBookBorrowID(String bookID, String borrowedDate) {
     this.bookID = bookID;
     this.borrowDate = borrowedDate;
   }
 
-  public void showStudent() {
+  // Getter method for studentID
+  public String getStudentID() {
+    return studentID;
+  }
+
+  // Getter method for studentName
+  public String getStudentName() {
+    return studentName;
+  }
+
+  // Getter method for bookID
+  public String getBookBorrowID() {
+    return bookID;
+  }
+
+  // toggleReturn method to toggle the return status
+  public void toggleReturn() {
+    if (isReturn) { // if isReturn is true
+      isReturn = false; // Set isReturn to false
+      returnStatus = "Yes"; // Set returnStatus to "Yes"
+    } else {
+      isReturn = true; // Set isReturn to true
+      returnStatus = "No"; // Set returnStatus to "No"
+    }
+  }
+
+  // Method to show the student as a table format with printf
+  public void showStudentTable() {
     System.out.printf(
         "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
-        studentID, studentName, bookID, borrowDate, Returned);
+        studentID, studentName, bookID, borrowDate, returnStatus);
   }
 }

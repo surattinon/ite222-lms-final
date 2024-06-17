@@ -1,32 +1,29 @@
 package LMS;
 
 public class BookDatabase {
-  // Declare 2D array to store in books field
+  // Declare books as a private field with datatype BookDetail array
   private BookDetail[] books;
 
-  // Constructor to initialize BookDatabase with 2D array of books
+  // Constructor for BookDatabase class
   public BookDatabase(BookDetail[] books) {
-    this.books = books;
-  }
-
-  // Setter method for books field
-  public void setBooks(BookDetail[] books) {
-    this.books = books;
+    this.books = books; // Set the books field with the books argument
   }
 
   // Getter method for books field
-  public BookDetail[] getBooks() {
+  public BookDetail[] getBookDB() {
     return books;
   }
 }
 
+// Subclass BookDetail
 class BookDetail {
+  // Fields
   private String bookID;
   private String bookTitle;
   private String bookAuthor;
   private String bookPublication;
   private boolean isAvailable;
-  private String status = "Available";
+  private String status = "Available"; // Set status to "Available" by default
 
   public BookDetail(String bookID, String title, String author, String publication) {
     this.bookTitle = title;
@@ -36,25 +33,27 @@ class BookDetail {
     this.isAvailable = true;
   }
 
-  // boolean method to check if the book is available
+  // Boolean method to check if the book is available
   public boolean isNotBorrow() {
-    // If the book is available, set it to false and return true
-    if (isAvailable) {
-      isAvailable = false;
-      status = "Not Available";
-      return true;
+    if (isAvailable) { // if the book is available
+      isAvailable = false; // Set isAvailable to false
+      status = "Not Available"; // Set status to "Not Available"
+      return true; // Return true
     }
     return false; // If the book is not available, return false
   }
 
-  // Method to return the book by setting isAvailable to true
-  public void returnBook() {
-    isAvailable = true;
-    status = "Available";
+  public boolean isNotReturn() {
+    if (!isAvailable) { // if the book is not available
+      isAvailable = true; // Set isAvailable to true
+      status = "Available"; // Set status to "Available"
+      return true; // Return true
+    }
+    return false; // If the book is available, return false
   }
 
   // Getter method for bookID
-  public String getBookID() {
+  public String getBookBorrowID() {
     return bookID;
   }
 
@@ -63,8 +62,8 @@ class BookDetail {
     return bookTitle;
   }
 
-  // Getter method for print books details in table format
-  public void getBookTable() {
+  // Getter method for print books details in table format with printf
+  public void showBookTable() {
     System.out.printf(
         "| %-10s| %-20s| %-20s| %-20s| %-20s|\n",
         bookID, bookTitle, bookAuthor, bookPublication, status);

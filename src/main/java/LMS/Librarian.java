@@ -2,10 +2,11 @@ package LMS;
 
 /** Librarian */
 public class Librarian {
+  // Fields
   private int id;
   private String password;
-  private static int totalBooksBorrowed = 0; // Static variable to track total books borrowed
   private boolean isError;
+  private static int totalBooksBorrowed = 0; // Static variable to track total books borrowed
 
   // Constructor to initialize Librarian with ID and password
   public Librarian(int id, String password) {
@@ -20,22 +21,28 @@ public class Librarian {
 
   // Method to view all books in the library in a table format
   public void viewBooks(BookDatabase bookDB) {
-    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
+
+    // Declare books as datatype BookDetail array and store the array of books from the BookDatabase
+    BookDetail[] books = bookDB.getBookDB();
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
     System.out.printf(
         "| %-10s| %-20s| %-20s| %-20s| %-20s|\n", "ID", "Title", "Author", "Publication", "Status");
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
-    for (BookDetail book : books) { // Loop through the columns (slots)
-      book.getBookTable(); // Call the getBookTable method to print book details
+    for (BookDetail book : books) { // ForEach loop through the array of books
+      // Call the getBookTable method to print book details by index
+      book.showBookTable();
     }
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
   }
 
   public void showStudent(StudentDatabase studentDB) {
-    StudentDetails[] students = studentDB.getStudentDB();
+
+    // Declare students as datatype StudentDetails array and store the array of students from the
+    // StudentDatabase
+    StudentDetail[] students = studentDB.getStudentDB();
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
     System.out.printf(
@@ -43,77 +50,87 @@ public class Librarian {
         "Student ID", "Name", "Book ID", "Borrow Date", "Returned");
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
-    for (StudentDetails student : students) { // Loop through the columns (slots)
-      student.showStudent();
+    for (StudentDetail student : students) { // ForEach loop through the array of students
+
+      // Call the showStudentTable method to print student details by index
+      student.showStudentTable();
     }
     System.out.println(
         "-----------------------------------------------------------------------------------------------------");
   }
 
-  // Method to borrow a book by ID
+  // Method to borrow a book by ID and student ID
   public void borrowBook(
       BookDatabase bookDB,
       StudentDatabase studentDB,
       String bookID,
       String studentID,
       String borrowDate) {
+    // Declare books as datatype BookDetail array and store the array from the BookDatabase
+    BookDetail[] books = bookDB.getBookDB();
+    // Declare students as datatype StudentDetails array and store the array from StudentDatabase
+    StudentDetail[] students = studentDB.getStudentDB();
 
-    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
-    StudentDetails[] students = studentDB.getStudentDB();
+    // ForEach loop through the array of books
+    for (BookDetail book : books) {
+      // ForEach loop through the array of students
+      for (StudentDetail student : students) {
+        if (book.getBookBorrowID().equals(bookID) // Check if the book ID matches the input
+            && student
+                .getStudentID()
+                .equals(studentID)) { // Check if the student ID matches the input
 
-    for (BookDetail book : books) { // Loop through the columns (slots)
-      for (StudentDetails student : students) {
-        if (book.getBookID().equals(bookID)
-            && student.getStudentID().equals(studentID)) { // Check if the book ID matches the input
-          // call the borrowBook method to check if the book is available for borrowing
+          // Check if the book is available by calling the isNotBorrow method
           if (book.isNotBorrow()) {
             totalBooksBorrowed++; // Increment the total books borrowed
             System.out.printf("\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
-            student.isReturn();
-            student.setBookID(bookID, borrowDate);
+            student.setBookBorrowID(bookID, borrowDate);
             System.out.printf("Borrowed by %s\n", student.getStudentName());
-            isError = false;
-            return;
-            // break;
+            student.toggleReturn(); // Call the toggleReturn method to toggle the return status
+            return; // finish the method
           } else {
             System.out.println("The book is not available for borrowing.");
-            return;
+            return; // finish the method
           }
         } else {
           isError = true;
         }
       }
     }
-    if (isError) {
+    if (isError) { // If isError is true
       System.out.println("Invalid BookID or Student ID");
-      return;
     }
   }
 
-  // Method to return a book by ID
+  // Method to return a book by book ID
   public void returnBook(BookDatabase bookDB, String bookID, StudentDatabase studentDB) {
-    BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
-    StudentDetails[] students = studentDB.getStudentDB();
-    for (BookDetail book : books) { // Loop through the columns (slots)
-      for (StudentDetails student : students) {
-        if (student.getBookID().equals(bookID)
-            && book.getBookID().equals(bookID)) { // Check if the book ID matches the input
-          student.isReturn();
-          totalBooksBorrowed--; // Decrement the total books borrowed
-          book.returnBook(); // Call the returnBook method to set the book as available
-          System.out.printf(
-              "Book ID: %s | Title: %s \nStatus: has been returned.\n",
-              bookID, book.getBookTitle());
-          isError = false;
-          return;
+    // Declare books as datatype BookDetail array and store the array from the BookDatabase
+    BookDetail[] books = bookDB.getBookDB();
+
+    // Declare students as datatype StudentDetails array and store the array from the
+    // StudentDatabase
+    StudentDetail[] students = studentDB.getStudentDB();
+
+    // ForEach loop through the array of books
+    for (BookDetail book : books) {
+      // ForEach loop through the array of students
+      for (StudentDetail student : students) {
+        if (student.getBookBorrowID().equals(bookID)
+            && book.getBookBorrowID().equals(bookID)) { // Check if the book ID matches the input
+          if (book.isNotReturn()) {
+            totalBooksBorrowed--; // Decrement the total books borrowed
+            System.out.printf("\nStatus:\nBook ID %s.\nTitle %s.\n", bookID, book.getBookTitle());
+            System.out.printf("Returned by %s\n", student.getStudentName());
+            student.toggleReturn(); // Call the toggleReturn method to toggle the return status
+            return; // finish the method
+          } 
         } else {
           isError = true;
         }
       }
     }
     if (isError) {
-      System.out.println("Invalid BookID or Student ID");
-      return;
+      System.out.println("Invalid BookID");
     }
   }
 
