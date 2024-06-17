@@ -94,32 +94,26 @@ public class Librarian {
   public void returnBook(BookDatabase bookDB, String bookID, StudentDatabase studentDB) {
     BookDetail[] books = bookDB.getBooks(); // Get the 2D array of books
     StudentDetails[] students = studentDB.getStudentDB();
-    for (StudentDetails student : students) {
-      if (student.getBookID().equals(bookID)) { // Check if the book ID matches the input
-        student.isReturn();
-        isError = false;
-        break;
-      } else {
-        isError = true;
-      }
-
       for (BookDetail book : books) { // Loop through the columns (slots)
-        if (book.getBookID().equals(bookID)) { // Check if the book ID matches the input
-          // if (bookID.equals(student.getBookID()) ) { // Check if the book ID matches the input
+    for (StudentDetails student : students) {
+      if (student.getBookID().equals(bookID) && book.getBookID().equals(bookID)) { // Check if the book ID matches the input
+        student.isReturn();
           totalBooksBorrowed--; // Decrement the total books borrowed
           book.returnBook(); // Call the returnBook method to set the book as available
           System.out.printf(
               "Book ID: %s | Title: %s \nStatus: has been returned.\n",
               bookID, book.getBookTitle());
+        isError = false;
           return;
-        }
+      } else {
+        isError = true;
+      }
       }
     }
     if (isError) {
-      System.out.println("book id is not correct.");
+      System.out.println("Invalid BookID or Student ID");
       return;
     }
-    System.out.println("Book not found."); // if condition is not met, print book not found
   }
 
   // Static method to get the total number of books borrowed
