@@ -26,6 +26,7 @@ class StudentDetail {
   private String bookID;
   private String returnStatus;
   private boolean isReturn;
+  private String dueDate;
 
   // Constructor for StudentDetails class
   public StudentDetail(String studentID, String studentName, String borrowDate, String bookID) {
@@ -34,6 +35,7 @@ class StudentDetail {
     this.borrowDate = borrowDate;
     this.bookID = bookID;
     this.returnStatus = ""; // Set returnStatus to an empty string by default
+    this.dueDate = ""; // Set dueDate to an empty string by default
   }
 
   // Setter method for bookBorrowID
@@ -62,16 +64,18 @@ class StudentDetail {
     if (isReturn) { // if isReturn is true
       isReturn = false; // Set isReturn to false
       returnStatus = "Yes"; // Set returnStatus to "Yes"
+      dueDate = "";
     } else {
       isReturn = true; // Set isReturn to true
       returnStatus = "No"; // Set returnStatus to "No"
+      dueDate = "7 days"; // Set dueDate to "7 days"
     }
   }
 
   // Method to show the student as a table format with printf
   public void showStudentTable() {
     System.out.printf(
-        "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
-        studentID, studentName, bookID, borrowDate, returnStatus);
+        "| %-20s| %-20s| %-20s| %-20s| %-10s| %-10s|\n",
+        studentID, studentName, bookID, borrowDate, returnStatus, dueDate);
   }
 }

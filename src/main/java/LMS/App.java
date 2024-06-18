@@ -9,7 +9,7 @@ public class App {
   private static final String APP_NAME = "Stamford Library Management System";
 
   public static void main(String[] args) {
-    // Declare arrays for bookDetails and studentDetails 
+    // Declare arrays for bookDetails and studentDetails
     BookDetail[] booksDetails = new BookDetail[5];
     StudentDetail[] studentDetails = new StudentDetail[5];
 
@@ -34,7 +34,7 @@ public class App {
     StudentDatabase studentDB = new StudentDatabase(studentDetails);
 
     // Innitiate a librarian object and pass them trough constructor
-    Librarian librarian = new Librarian(12123, "password");
+    Librarian librarian = new Librarian(1234567890, "librarian123");
 
     // Login prompt
     Scanner scanner = new Scanner(System.in);
@@ -61,18 +61,18 @@ public class App {
         System.out.println("4. View Student Borrow History");
         System.out.println("5. Exit");
         System.out.println("--------------------------------");
-        System.out.print("Choose an option: ");
+        System.out.print("Choose an option ( Enter 1 - 5 ): ");
         int choice = scanner.nextInt(); // Recieve input and store in "choice"
 
         // Switch case for choices
         switch (choice) {
           case 1:
-            System.out.print("Enter the ID of the book to borrow: ");
+            System.out.print("Enter the ID of the book to borrow (Example: \"b00X\"): ");
             scanner.nextLine(); // Consume newline
             String borrowID = scanner.nextLine(); // Recieve input and store in "borrowID"
             System.out.print("Enter student ID: ");
             String studentID = scanner.nextLine(); // Recieve input and store in "studentID"
-            System.out.print("Enter borrow date: ");
+            System.out.print("Enter borrow date (Format \"DD-MM-YY\"): ");
             String burrowDate = scanner.nextLine(); // Recieve input and store in "borrowDate"
 
             // Call borrowBook method and pass bookDB, studentDB and variable above trough arguments
@@ -80,7 +80,7 @@ public class App {
             break;
 
           case 2:
-            System.out.print("Enter the ID of the book to return: ");
+            System.out.print("Enter the ID of the book to return (Example: \"b00X\"): ");
             scanner.nextLine(); // Consume newline
             String returnID = scanner.nextLine(); // Recieve input and store in "returnID"
 

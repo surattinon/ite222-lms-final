@@ -44,19 +44,19 @@ public class Librarian {
     // StudentDatabase
     StudentDetail[] students = studentDB.getStudentDB();
     System.out.println(
-        "-----------------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------------------");
     System.out.printf(
-        "| %-20s| %-20s| %-20s| %-20s| %-10s|\n",
-        "Student ID", "Name", "Book ID", "Borrow Date", "Returned");
+        "| %-20s| %-20s| %-20s| %-20s| %-10s| %-10s|\n",
+        "Student ID", "Name", "Book ID", "Borrow Date", "Returned", "Due Date");
     System.out.println(
-        "-----------------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------------------");
     for (StudentDetail student : students) { // ForEach loop through the array of students
 
       // Call the showStudentTable method to print student details by index
       student.showStudentTable();
     }
     System.out.println(
-        "-----------------------------------------------------------------------------------------------------");
+        "-----------------------------------------------------------------------------------------------------------------");
   }
 
   // Method to borrow a book by ID and student ID
